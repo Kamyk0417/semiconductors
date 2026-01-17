@@ -6,7 +6,7 @@ from utils import linear_int, binary_comps, strain
 
 n=1000    #liczba punktow
 
-d=2       #szerokosc studni  
+d=2.5       #szerokosc studni  
 ratio=1/10. #jaki stosunek zajmuje studnia w stosunku do calej struktury
 d=d/0.52917721*10
 #bariera GaP
@@ -18,15 +18,15 @@ print(Vdb)
 Vdb=Vdb/27.21
 
 eps_xy_gaas, eps_z_gaas, delta_Ec_gaas, delta_Ev_gaas, eps_xy_gasb, eps_z_gasb, delta_Ec_gasb, delta_Ev_gasb = strain(0.5)
-#studnia Ga P_0.5 Sb_0.5
-Ves=linear_int("VBO", "Ga", "P", "Sb", 0.5, params=binary_comps) + delta_Ev_gasb
+#studnia Ga As_0.5 P_0.5
+Ves=linear_int("VBO", "Ga", "As", "P", 0.5, params=binary_comps) + delta_Ev_gasb
 print(Ves)
 Ves=Ves/27.21
-Vds=linear_int("VBO", "Ga", "P", "Sb", 0.5, params=binary_comps) + linear_int("Eg", "Ga", "P", "Sb", 0.5, bow=0.19, params=binary_comps) + delta_Ec_gasb
+Vds=linear_int("VBO", "Ga", "As", "P", 0.5, params=binary_comps) + linear_int("Eg", "Ga", "As", "P", 0.5, bow=0.19, params=binary_comps) + delta_Ec_gasb
 print(Vds)
 Vds=Vds/27.21
 me=0.05     #masa elektronu
-md=0.5      #masa dziury
+md=0.05      #masa dziury
 
 a=0.
 b=d/ratio
