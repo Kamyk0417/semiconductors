@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from utils import binary_comps, linear_int
 
 ###############################################################################################
-# Task 2: Trends in properties of III-V semiconductors
+# Task 2: Chemiczne trendy wlasciwosci polprzewodnikow
 ###############################################################################################
 
 Z_data = []
@@ -29,7 +29,7 @@ plt.savefig("results/task2_trends.png", dpi=300)
 plt.close()
 
 #################################################################################################
-# Task 3: Linear interpolation of alloy properties
+# Task 3: Liniowa interpolacja wlasciwosci stopow GaAsP
 #################################################################################################
 
 X_DATA = np.linspace(0,1,100)

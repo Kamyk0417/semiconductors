@@ -13,7 +13,7 @@ T_task4 = np.linspace(0, 300, 1000)
 T_task5 = 1/np.linspace(50, 300, 1000)
 
 def sigma_f(t, x):
-    mee = linear_int("m*e", "Ga", "As", "P", x)
+    mee = linear_int("m*e", "Ga", "As", "P", x) #masa efektywna elektronu
 
     gamma_eqs = []
     gamma_eqs.append(binary_comps["GaAs"]["gamma1"] - 2*binary_comps["GaAs"]["gamma2"])

@@ -8,13 +8,10 @@ X_DATA = np.linspace(0,1,100)
 vbo_data = np.zeros_like(X_DATA)
 Eg_data = np.zeros_like(X_DATA)
 
+#VBO i przerwa energetyczna stopow GaAsP
 for i in range(len(X_DATA)):
     vbo_data[i] = linear_int("VBO", "Ga", "As", "P", X_DATA[i], params=binary_comps)
     Eg_data[i] = linear_int("Eg", "Ga", "As", "P", X_DATA[i], bow=0.19, params=binary_comps)
-
-
-eps_xy = (binary_comps["GaAs"]["a"]-binary_comps["GaP"]["a"])/binary_comps["GaAs"]["a"]
-eps_z = -2*binary_comps["GaAs"]["c12"]/binary_comps["GaAs"]["c11"]*eps_xy
 
 strain_effects_gaas = []
 delta_Ec_list_gaas = []
@@ -24,6 +21,7 @@ strain_effects_gap = []
 delta_Ec_list_gap = []
 delta_Ev_list_gap = []
 
+#obliczenie poprawek ze wzgledu na naprezenia
 for x in X_DATA:
     eps_xy_gaas, eps_z_gaas, delta_Ec_gaas, delta_Ev_gaas, eps_xy_gap, eps_z_gap, delta_Ec_gap, delta_Ev_gap = strain(x)
     strain_effects_gaas.append(100*2*eps_xy_gaas+eps_z_gaas)
@@ -53,7 +51,7 @@ axs[1].set_ylabel("Strain effect")
 axs[1].legend()
 axs[1].grid()
 
-
+#poprawka do przerwy energetycznej
 Eg_new_data_gaas = Eg_data + np.array(delta_Ec_list_gaas) - np.array(delta_Ev_list_gaas)
 Eg_new_data_gap = Eg_data + np.array(delta_Ec_list_gap) - np.array(delta_Ev_list_gap)
 
