@@ -73,7 +73,7 @@ legend = [f"x={x:.2f}" for x in X]
 fig.legend(legend)
 
 plt.tight_layout()
-plt.savefig("results/task_4_5.png", dpi=300)
+plt.savefig("results/task_4_5_eg_res.png", dpi=300)
 plt.close()
 
 

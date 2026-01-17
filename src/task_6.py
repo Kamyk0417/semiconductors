@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utils import linear_int, binary_comps
+from utils import linear_int, binary_comps, strain
 
 X_DATA = np.linspace(0,1,100)
 
@@ -15,26 +15,6 @@ for i in range(len(X_DATA)):
 
 eps_xy = (binary_comps["GaAs"]["a"]-binary_comps["GaP"]["a"])/binary_comps["GaAs"]["a"]
 eps_z = -2*binary_comps["GaAs"]["c12"]/binary_comps["GaAs"]["c11"]*eps_xy
-
-def strain(x):
-    a = linear_int("a", "Ga", "As", "P", x, params=binary_comps)
-    
-    eps_xy_gaas = (binary_comps["GaAs"]["a"] - a)/binary_comps["GaAs"]["a"]
-    eps_xy_gap = (binary_comps["GaP"]["a"] - a)/binary_comps["GaP"]["a"]
-
-    eps_z_gaas = -2*binary_comps["GaAs"]["c12"]/binary_comps["GaAs"]["c11"]*eps_xy_gaas
-    eps_z_gap = -2*binary_comps["GaP"]["c12"]/binary_comps["GaP"]["c11"]*eps_xy_gap
-
-    ac = x*binary_comps["GaAs"]["ac"] + (1-x)*binary_comps["GaP"]["ac"]
-    av = x*binary_comps["GaAs"]["av"] + (1-x)*binary_comps["GaP"]["av"]
-
-    delta_Ec_gaas = ac*(2*eps_xy_gaas + eps_z_gaas)
-    delta_Ev_gaas = av*(2*eps_xy_gaas + eps_z_gaas)
-
-    delta_Ec_gap = ac*(2*eps_xy_gap + eps_z_gap)
-    delta_Ev_gap = av*(2*eps_xy_gap + eps_z_gap)
-
-    return eps_xy_gaas, eps_z_gaas, delta_Ec_gaas, delta_Ev_gaas, eps_xy_gap, eps_z_gap, delta_Ec_gap, delta_Ev_gap
 
 strain_effects_gaas = []
 delta_Ec_list_gaas = []
@@ -84,5 +64,5 @@ axs[2].set_ylabel("Eg [eV]")
 axs[2].legend()
 axs[2].grid()
 axs[2].set_xlabel("x (GaAs$_{x}$P$_{1-x}$)")
-plt.savefig("./results/task6.png", dpi=300)
+plt.savefig("./results/task_6_strain.png", dpi=300)
 plt.close()
